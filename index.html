@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wyvern - A dank memer bot but for programmers</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">Wyvern - A dank memer bot but for programmers</div>
+      <div class="chat" id="chat">
+        <div class="chatbox-left">
+          Hey, I am Wyvern and I can entertain you with my huge dataset
+          presented with dank programming memes.
+          <br />
+          <br />
+          Type:
+          <br /><br />
+          <span id="startupMsgBtn">pls meme</span>
+          <br /><br />
+          to start.
+          <br /><span id="comingSoonMsg">(More commands coming soon)</span>
+          <br />
+          <br />
+          <span id="note">Note: The chat with the bot is only limited to the current session all the chat will be wiped out once you refresh this page or visit it next time.</span>
+        </div>
+      </div>
+      <div class="textbox">
+        <input type="text" id="message" placeholder="Type..." />
+      </div>
+    </div>
+    <script>
+      let startupMsgBtn = document.getElementById("startupMsgBtn");
+      let message = document.getElementById("message");
+      let chat = document.getElementById("chat");
+      let chatboxRight = document.getElementsByClassName("chatbox-right");
+
+      startupMsgBtn.onclick = () => {
+        message.value = "pls meme";
+      };
+
+      message.addEventListener("keyup", (e) => {
+        if (e.keyCode == 13 && message.value != "") {
+          chat.innerHTML += `<div class='chatbox-right'>${message.value}</div>`;
+
+          if (message.value == "pls meme") {
+            let score = 1 + Math.floor(Math.random() * 11);
+            let finalImageSrc = "uploads/meme" + score + ".png";
+            chat.innerHTML += `
+              <div class='chatbox-left'>
+                <img src="${finalImageSrc}" style='width: 100%; border-radius: 10px;' />
+              </div>
+            `;
+          } else if (message.value == "hi" || message.value == "hello" || message.value == "sup") {
+              chat.innerHTML += `
+                <div class='chatbox-left'>
+                  Greetings hooman nice to see you here, wanna get started?<br />
+                  type in <b>pls meme</b> to get started.
+                </div>
+              `;
+          } else if (message.value == "hows it going" || message.value == "how are you?") {
+              chat.innerHTML += `
+                <div class='chatbox-left'>
+                  I am good thanks for asking.
+                </div>
+              `;
+          } else {
+            chat.innerHTML += `
+              <div class='chatbox-left'>
+                Sorry I didn't understand that, could you try again please?
+              </div>
+            `;
+          }
+
+          message.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>
