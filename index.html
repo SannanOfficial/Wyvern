@@ -35,6 +35,7 @@
       let message = document.getElementById("message");
       let chat = document.getElementById("chat");
       let chatboxRight = document.getElementsByClassName("chatbox-right");
+      let memeCount; /* Assign this variable to the number of memes in upload folder */
 
       startupMsgBtn.onclick = () => {
         message.value = "pls meme";
@@ -45,7 +46,7 @@
           chat.innerHTML += `<div class='chatbox-right'>${message.value}</div>`;
 
           if (message.value == "pls meme") {
-            let score = 1 + Math.floor(Math.random() * 11);
+            let score = 1 + Math.floor(Math.random() * memeCount);
             let finalImageSrc = "uploads/meme" + score + ".png";
             chat.innerHTML += `
               <div class='chatbox-left'>
